@@ -113,8 +113,12 @@ cat <<EOF | save . myLargeNestedObjectWhen.json
          "TransferredProductAmount":500,
 		 "UndeliveredProductAmount":100,
 		 "ProductPurchasePrice":1
-      }
-   
+      },
+	  "myMathOperationsObject":{
+      "myMathNumber1":3,
+	  "myMathNumber2":30,
+	  "myMathNumber3":1.23456,
+   }
 }
 EOF
 
@@ -203,11 +207,23 @@ When I create the result of 'mySecondNumber' % 'myThirdNumber'
 and I rename the 'result' to 'resultOfmyFirstModulo'
 
 # Now let's do some math with the number that we just created: 
-
 When I create the result of 'mySecondNumber' + 'nameOfFirstNewVariable'
 and I rename the 'result' to 'resultOfmySecondSum'
 When I create the result of 'mySecondNumber' * 'nameOfFirstNewVariable'
 and I rename the 'result' to 'resultOfmySecondMultiplication'
+
+# You can also do operations with numbers inside dictionaries,
+# just specify where the number is contained using the operator 'in'
+
+When I create the result of 'mySecondNumber' / 'myMathNumber1' in 'myMathOperationsObject'
+and I rename the 'result' to 'resultOfMathWithDictionaryObjects1'
+
+When I create the result of 'myMathNumber1' in 'myMathOperationsObject' * 'mySecondNumber' 
+and I rename the 'result' to 'resultOfMathWithDictionaryObjects1'
+
+When I create the result of 'myMathNumber1' in 'myMathOperationsObject' + 'myMathNumber1' in 'myMathOperationsObject' 
+and I rename the 'result' to 'resultOfMathWithDictionaryObjects1'
+
 
 # INVERT SIGN
 # you can invert the sign of a number using this statement
