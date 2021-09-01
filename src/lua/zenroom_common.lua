@@ -17,7 +17,7 @@
 --If not, see http://www.gnu.org/licenses/agpl.txt
 --
 --Last modified by Denis Roio
---on Friday, 20th August 2021
+--on Wednesday, 1st September 2021
 --]]
 
 -- override type to recognize zenroom's types
@@ -331,6 +331,11 @@ function array_contains(arr, obj)
    return false
 end
 
+function array_equals(left, right)
+	assert(luatype(left) == 'table', "Internal error: array_equals 1st argument is not a table", 2)
+	assert(luatype(right) == 'table', "Internal error: array_equals 2nd argument is not a table", 2)
+	return ( ZEN.serialize(left) == ZEN.serialize(right) )
+end
 
 function help(module)
    if module == nil then
